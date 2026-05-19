@@ -1,4 +1,4 @@
-//Morris Traversal Algorithm
+//Morris Traversal Algorithm: inorder and preorder
 
 #include <iostream>
 #include <vector>
@@ -46,7 +46,26 @@ vector<int> getInorder(TreeNode* root) {
         }
     } return inorder;
 }
-
+vector<int> getInorder(TreeNode* root) {
+    vector<int> preorder;
+    TreeNode* curr = root;
+    while (curr) {
+        if (!curr->left) { preorder.push_back(curr->val); curr = curr->right;}
+        else {
+            TreeNode* prev = curr->left;
+            while (prev->right && prev->right!=curr) 
+                prev = prev->right;
+            if (!prev->right) {
+                prev->right = curr;
+                preorder.push_back(curr->val);
+                curr = curr->left;
+            } else {
+                prev->right = nullptr;
+                curr = curr->right;
+            }
+        }
+    } return preorder;
+}
 int main() {
     int n;
     cout << "Enter number of nodes: ";
