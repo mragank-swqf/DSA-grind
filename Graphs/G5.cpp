@@ -1,4 +1,4 @@
-//Topological Sort
+//Topological Sort using DFS
 
 #include <bits/stdc++.h>
 using namespace std;
